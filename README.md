@@ -38,9 +38,11 @@ This is a dynamic web application built using Next.js and Tailwind CSS as part o
   cd IT224_finalproject
 
 2. **Install Dependencies**
+
  ```bash
   npm install
 
 3. **Run the Dev Server**
+
  ```bash
   npm run dev
