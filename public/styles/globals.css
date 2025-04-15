@@ -76,7 +76,8 @@
 }
 
 body {
-  font-family: var(--font-sans);
+  margin: 0; /* Ensure no default margin */
+  @apply bg-background text-foreground;
 }
 
 
