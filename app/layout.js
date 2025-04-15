@@ -1,22 +1,31 @@
-// app/layout.js
+'use client'; // Add this line to mark this as a Client Component
 
-'use client'; // Mark this as a Client Component if using hooks
+import '../public/styles/globals.css';
+import Header from './components/header';
+import Footer from './components/footer';
+import Sidebar from './components/sidebar';
 
-import Header from './components/header'; // Adjust the path if necessary
-import Footer from './components/footer'; // Adjust the path if necessary
-import Sidebar from './components/sidebar'; // Adjust the path if necessary
-
-export default function Layout({ children }) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en"> {/* Add the <html> tag */}
-      <body>
+    <html lang="en">
+      <body className="flex flex-col min-h-screen">
+        {/* Header */}
         <Header />
-        <div className="flex flex-grow relative">
-          <Sidebar />
-          <main className="flex-grow p-8 mt-16 mb-16 transition-all duration-300 ease-in-out">
-            {children} {/* This is where the child components will be rendered */}
+
+        {/* Main Content Area (Sidebar + Main Content) */}
+        <div className="flex flex-col md:flex-row flex-1 w-full">
+          {/* Sidebar */}
+          <div className="flex-1 p-6 bg-white shadow-lg rounded-lg md:ml-4 mt-4 md:mt-0">
+            <Sidebar />
+          </div>
+
+          {/* Main Content */}
+          <main className="w-full md:w-1/4 bg-gray-800 text-white p-4">
+            {children}
           </main>
         </div>
+
+        {/* Footer */}
         <Footer />
       </body>
     </html>
