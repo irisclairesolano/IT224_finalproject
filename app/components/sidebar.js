@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function SidebarLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar is visible by default
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar is visible by default
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -19,9 +19,19 @@ export default function SidebarLayout() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transition-all duration-300 z-40 ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`${
+              isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+            } fixed md:relative h-[calc(100vh-64px)] w-64 bg-white border-r transition-all duration-300 z-40`}
+          
+
+
+        
+      //   className={`${
+      //     isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      //   } fixed md:relative h-[calc(100vh-64px)] w-64 bg-white border-r transition-all duration-300 z-40`}
+      // >
+      //   <Sidebar />
+      // </aside>
       >
         <button
           onClick={toggleSidebar}
@@ -39,12 +49,11 @@ export default function SidebarLayout() {
 
       {/* Main Content
       <main
-        className={`flex-1 min-h-screen p-8 bg-gray-100 transition-all duration-300 ${
-          isSidebarOpen ? 'ml-64' : 'ml-0' // When sidebar is open, shift content
-        }`}
+        // className={`flex-1 min-h-screen p-8 bg-gray-100 transition-all duration-300 ${
+        //   isSidebarOpen ? 'ml-64' : 'ml-0' // When sidebar is open, shift content
+        // }`}
       >
-        <h1 className="text-2xl font-bold mb-4">Welcome to the Dashboard!</h1>
-        <p>Sample content goes here. You can scroll and see the sidebar stay in place.</p>
+        
       </main> */}
     </div>
   );

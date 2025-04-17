@@ -77,16 +77,22 @@
 
 body {
   margin: 0; /* Ensure no default margin */
-  @apply bg-background text-foreground;
+  background-color: var(--background); /* Use the --background variable */
+  color: var(--foreground); /* Use the --foreground variable */
 }
 
 
 
 @layer base {
   * {
-    @apply border-border;
+    border: 1px solid var(--border);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background); /* Use the --background variable */
+    color: var(--foreground); 
   }
+}
+.sidebar {
+  background-color: white;
+
 }
