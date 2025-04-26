@@ -11,7 +11,7 @@ export default function Header({ toggleSidebar }) {
         onClick={toggleSidebar}
         className="text-gray-700"
       >
-        ☰ {/* This is the Hamburger Icon */}
+        Dashboard
       </button>
       <h1 className="text-xl font-bold">Snapxz App</h1>
     </header>

@@ -1,16 +1,24 @@
-// app/page.js
+'use client'; // This is a client component
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-'use client'; // Add this line to mark this as a Client Component
-import { Button } from "@/components/ui/button";
+export default function HomePage() {
+  const { data: session, status } = useSession(); // Get session status
+  const router = useRouter();
 
-export default function Home() {
+  if (status === "loading") return <p>Loading...</p>; // If session is loading
+
+  if (!session) {
+    router.push("/auth/signin"); // Redirect to sign-in page if not signed in // Don't render anything until redirected
+  } else{
+    alert("Welcome to the home page!")
+  }
+
   return (
-
-<main className="relative z-10 bg-white p-4">
-<Button variant="default" onClick={() => alert('You clicked me!')}>
-  Click Me
-</Button>
-
-</main>
-  )
+    
+      <>
+      <h1>Welcome to HomePage</h1>
+      </>
+    
+  );
 }

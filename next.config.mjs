@@ -4,7 +4,8 @@
 // export default nextConfig;
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Your config here
+    transpilePackages: ['react-map-gl', 'mapbox-gl'],
+
 };
 
 export default nextConfig;
