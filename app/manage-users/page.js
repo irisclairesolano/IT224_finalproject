@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import ReactMapGL from 'react-map-gl';  // v6 style import
 
-
+//error response
 const fetchUsers = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
   if (!res.ok) {
@@ -13,6 +13,7 @@ const fetchUsers = async () => {
   return res.json();
 };
 
+//fetching hte users
 const fetchUser = async (id) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
   return res.json();

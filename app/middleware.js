@@ -1,32 +1,16 @@
+// app/middleware.js (or wherever you have your middleware)
+import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
+export function middleware(req) {
+  const token = req.cookies.get('next-auth.token'); // Check for session token
 
-import { getToken } from "next-auth/jwt"
-import { NextResponse } from "next/server"
-
-
-export async function middleware(req) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
-
-  console.log("Middleware token:", token);
-
-  const isAuthPage = req.nextUrl.pathname.startsWith("/auth");
-
-  if (isAuthPage) {
-    return NextResponse.next(); // allow access to auth pages
+  // If the user is not authenticated and is not on the sign-in or API page
+  if (!token && !req.url.includes('/auth/signin') && !req.url.includes('/api')) {
+    // Redirect to the sign-in page
+    return NextResponse.redirect(new URL('/auth/signin', req.url));
   }
 
-  if (!token) {
-    const loginUrl = new URL("/auth/signin", req.url);
-    return NextResponse.redirect(loginUrl);
-  }
-
+  // Allow the request to go through if authenticated or if it's a sign-in or API request
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: [
-    "/((?!api|auth|_next|favicon.ico).*)",
-  ],
-};
-
-

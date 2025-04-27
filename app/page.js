@@ -10,8 +10,7 @@ export default function HomePage() {
 
   if (!session) {
     router.push("/auth/signin"); // Redirect to sign-in page if not signed in // Don't render anything until redirected
-  } else{
-    alert("Welcome to the home page!")
+    return null;
   }
 
   return (
