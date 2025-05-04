@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
-import { GridIcon, UserCircleIcon } from "../icons/index"; // Ensure correct import of icons
+import { GridIcon, UserCircleIcon } from "../icons/index";
+import { FiMessageCircle, FiUsers, FiFileText } from "react-icons/fi"; // Import new icons
 
 type NavItem = {
   name: string;
@@ -21,6 +22,21 @@ const navItems: NavItem[] = [
     icon: <UserCircleIcon />,
     name: "User Profile",
     path: "/profile",
+  },
+  {
+    icon: <FiUsers />, // Icon for Manage Users
+    name: "Manage Users",
+    path: "/users",
+  },
+  {
+    icon: <FiFileText />, // Icon for Manage Posts
+    name: "Manage Posts",
+    path: "/manage-posts",
+  },
+  {
+    icon: <FiMessageCircle />,
+    name: "Manage Comments",
+    path: "/manage-comments",
   },
 ];
 
@@ -78,7 +94,7 @@ const AppSidebar: React.FC = () => {
         <Link href="/">
           {isExpanded || isHovered || isMobileOpen ? (
             <span className="text-2xl font-bold text-gray-800 dark:text-white">
-              LIB IS
+              Snapxz
             </span>
           ) : (
             <span className="text-xl font-bold text-gray-800 dark:text-white">

@@ -45,7 +45,11 @@ body {
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
-  
+
+  button:focus, a:focus {
+    outline: none;
+    box-shadow: none; /* Blue focus ring */
+  }
   /* Remove date/time input icons */
   input[type="date"]::-webkit-inner-spin-button,
   input[type="time"]::-webkit-inner-spin-button,
