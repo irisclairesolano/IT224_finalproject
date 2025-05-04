@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useQueryClient, useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import React from 'react';
+import { useQueryClient, useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 
-// 🧠 Define the User type
+
+// Define the User type
 type User = {
   id: number;
   name: string;
@@ -12,54 +13,50 @@ type User = {
   email: string;
   address: {
     city: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
   };
 };
 
-// ✅ Fetch all users
+// Fetch all users
 const fetchUsers = async (): Promise<User[]> => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
   if (!res.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
   return res.json();
 };
 
-// ✅ Fetch single user by ID
+// Fetch single user by ID (for prefetching)
 const fetchUser = async (id: number): Promise<User> => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
   if (!res.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
   return res.json();
 };
 
-export default function ManageUsers() {
+export default function ManagePosts() {
   const queryClient = useQueryClient();
 
-  // 🧠 Main user list query with staleTime and refetchOnWindowFocus
+  // Main user list query
   const {
     data: users = [],
     isLoading,
     isError,
     error,
-    isFetching
+    isFetching,
   } = useQuery<User[], Error>({
-    queryKey: ['users'],
+    queryKey: ["users"],
     queryFn: fetchUsers,
     staleTime: 60 * 1000, // 1 minute
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
 
   // Prefetch user data on hover
   const prefetchUser = (userId: number) => {
     queryClient.prefetchQuery({
-      queryKey: ['user', userId],
+      queryKey: ["user", userId],
       queryFn: () => fetchUser(userId),
-      staleTime: 60 * 1000
+      staleTime: 60 * 1000,
     });
   };
 
@@ -81,7 +78,7 @@ export default function ManageUsers() {
           <p className="font-bold">Error</p>
           <p>{error.message}</p>
           <button
-            onClick={() => queryClient.refetchQueries({ queryKey: ['users'] })}
+            onClick={() => queryClient.refetchQueries({ queryKey: ["users"] })}
             className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
           >
             Retry
@@ -94,21 +91,13 @@ export default function ManageUsers() {
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <div className="max-w-7xl mx-auto">
-        {/* <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">User Management</h1>
-          <Link
-            href="/users/create"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Add New User
-          </Link>
-        </div> */}
 
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {users.map((user) => (
             <Link
               key={user.id}
-              href={`/users/${user.id}`}
+              href={`/manage-posts/${user.id}`}
               className="bg-white shadow-lg p-6 rounded-xl hover:shadow-xl transition transform hover:-translate-y-1"
               onMouseEnter={() => prefetchUser(user.id)}
             >
