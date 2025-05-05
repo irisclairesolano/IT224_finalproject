@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
-import { GridIcon, UserCircleIcon } from "../../public/icons/index";
+/* Removed icon imports to replace with img tags */
+// import { GridIcon, UserCircleIcon } from "../assets/icons/index";
 import { FiMessageCircle, FiUsers, FiFileText } from "react-icons/fi"; // Import new icons
 
 type NavItem = {
@@ -14,12 +15,12 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <GridIcon />,
+    icon: <img src="/my-icons/grid.svg" alt="Grid Icon" className="inline-block w-6 h-6" />,
     name: "Dashboard",
     path: "/",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <img src="/my-icons/user-circle.svg" alt="User Circle Icon" className="inline-block w-6 h-6" />,
     name: "User Profile",
     path: "/profile",
   },

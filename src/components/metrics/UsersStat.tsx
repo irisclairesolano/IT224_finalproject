@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Badge from "../ui/badge/Badge";
-import { ArrowDownIcon, ArrowUpIcon, BoxIconLine, GroupIcon } from "public/icons";
+import { ArrowDownIcon, ArrowUpIcon, BoxIconLine, GroupIcon } from "@/assets/icons";
 import Link from "next/link";
 import { FiMessageCircle, FiFileText } from "react-icons/fi";
 
