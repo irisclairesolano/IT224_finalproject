@@ -1,10 +1,7 @@
-import PageBreadcrumb from "@/components/common/PageBreadCrumb";
-import Badge from "@/components/ui/badge/Badge";
-import { PlusIcon } from "@/assets/icons";
+import PageBreadcrumb from "../../../../components/common/PageBreadCrumb";
+import Badge from "../../../../components/ui/badge/Badge";
 import { Metadata } from "next";
 import React from "react";
-
-
 
 export default function BadgePage() {
   return (
@@ -87,25 +84,25 @@ export default function BadgePage() {
           </div>
           <div className="p-6 border-t border-gray-100 dark:border-gray-800 xl:p-10">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="light" color="primary" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="primary" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Primary
               </Badge>
-              <Badge variant="light" color="success" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="success" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Success
               </Badge>{" "}
-              <Badge variant="light" color="error" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="error" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Error
               </Badge>{" "}
-              <Badge variant="light" color="warning" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="warning" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Warning
               </Badge>{" "}
-              <Badge variant="light" color="info" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="info" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Info
               </Badge>
-              <Badge variant="light" color="light" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="light" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Light
               </Badge>
-              <Badge variant="light" color="dark" startIcon={<PlusIcon />}>
+              <Badge variant="light" color="dark" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Dark
               </Badge>
             </div>
@@ -120,25 +117,25 @@ export default function BadgePage() {
           </div>
           <div className="p-6 border-t border-gray-100 dark:border-gray-800 xl:p-10">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="solid" color="primary" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="primary" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Primary
               </Badge>
-              <Badge variant="solid" color="success" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="success" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Success
               </Badge>{" "}
-              <Badge variant="solid" color="error" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="error" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Error
               </Badge>{" "}
-              <Badge variant="solid" color="warning" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="warning" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Warning
               </Badge>{" "}
-              <Badge variant="solid" color="info" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="info" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Info
               </Badge>
-              <Badge variant="solid" color="light" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="light" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Light
               </Badge>
-              <Badge variant="solid" color="dark" startIcon={<PlusIcon />}>
+              <Badge variant="solid" color="dark" startIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Dark
               </Badge>
             </div>
@@ -153,25 +150,25 @@ export default function BadgePage() {
           </div>
           <div className="p-6 border-t border-gray-100 dark:border-gray-800 xl:p-10">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="light" color="primary" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="primary" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Primary
               </Badge>
-              <Badge variant="light" color="success" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="success" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Success
               </Badge>{" "}
-              <Badge variant="light" color="error" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="error" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Error
               </Badge>{" "}
-              <Badge variant="light" color="warning" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="warning" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Warning
               </Badge>{" "}
-              <Badge variant="light" color="info" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="info" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Info
               </Badge>
-              <Badge variant="light" color="light" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="light" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Light
               </Badge>
-              <Badge variant="light" color="dark" endIcon={<PlusIcon />}>
+              <Badge variant="light" color="dark" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Dark
               </Badge>
             </div>
@@ -186,25 +183,25 @@ export default function BadgePage() {
           </div>
           <div className="p-6 border-t border-gray-100 dark:border-gray-800 xl:p-10">
             <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
-              <Badge variant="solid" color="primary" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="primary" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Primary
               </Badge>
-              <Badge variant="solid" color="success" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="success" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Success
               </Badge>{" "}
-              <Badge variant="solid" color="error" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="error" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Error
               </Badge>{" "}
-              <Badge variant="solid" color="warning" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="warning" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Warning
               </Badge>{" "}
-              <Badge variant="solid" color="info" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="info" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Info
               </Badge>
-              <Badge variant="solid" color="light" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="light" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Light
               </Badge>
-              <Badge variant="solid" color="dark" endIcon={<PlusIcon />}>
+              <Badge variant="solid" color="dark" endIcon={<img src='/my-icons/plus.svg' alt='Plus Icon' className='inline-block w-4 h-4' />}>
                 Dark
               </Badge>
             </div>
