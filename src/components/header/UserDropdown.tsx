@@ -127,7 +127,7 @@ export default function UserDropdown() {
             />
           </svg>
           Sign out
-        </DropdownItem>
+        </DropdownItem> 
       </Dropdown>
     </div>
   );

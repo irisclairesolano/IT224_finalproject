@@ -1,22 +1,28 @@
-import type { NextConfig } from "next";
-import type { webpack } from "next/dist/compiled/webpack/webpack";
-
-const nextConfig: NextConfig = {
-  webpack: (config: webpack.Configuration, { dev, isServer }) => {
-    // Add SVGR loader
-    config.module?.rules?.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
+const nextConfig = {
+  reactStrictMode: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: true,
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'removeViewBox',
+                  active: false,
+                },
+              ],
+            },
+          },
+        },
+      ],
     });
-
-    // Optional: Disable cache in development if experiencing issues
-    if (dev) {
-      config.cache = false;
-    }
 
     return config;
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
-import { GridIcon, UserCircleIcon } from "../icons/index";
+import { GridIcon, UserCircleIcon } from "../../public/icons/index";
 import { FiMessageCircle, FiUsers, FiFileText } from "react-icons/fi"; // Import new icons
 
 type NavItem = {
