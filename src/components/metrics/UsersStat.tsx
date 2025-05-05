@@ -22,7 +22,7 @@ export const UsersStat = () => {
                 Users
               </span>
               <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-                198
+                10
               </h4>
             </div>
             <Badge color="success">
@@ -45,7 +45,7 @@ export const UsersStat = () => {
                 Posts
               </span>
               <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-                675
+                100
               </h4>
             </div>
 
@@ -71,7 +71,7 @@ export const UsersStat = () => {
                 Comments
               </span>
               <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-                9806
+                500
               </h4>
             </div>
 

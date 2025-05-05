@@ -97,7 +97,7 @@ export default function SignInForm() {
             </div>
           )}
         </form>
-        <p className="mt-6 text-sm text-center text-gray-500 dark:text-gray-400">
+        {/* <p className="mt-6 text-sm text-center text-gray-500 dark:text-gray-400">
           Don’t have an account?{" "}
           <a
             href="/signup"
@@ -105,7 +105,7 @@ export default function SignInForm() {
           >
             Sign up
           </a>
-        </p>
+        </p> */}
       </div>
     </div>
   );
