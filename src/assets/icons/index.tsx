@@ -2,7 +2,7 @@ import PlusIcon from "./plus.svg";
 import CloseIcon from "./close.svg";
 import BoxIcon from "./box.svg";
 import CheckCircleIcon from "./check-circle.svg";
-import AlertIcon from "./alert.svg";
+
 import InfoIcon from "./info.svg";
 import ErrorIcon from "./info-hexa.svg";
 import BoltIcon from "./bolt.svg";
@@ -20,8 +20,8 @@ import BoxIconLine from "./box-line.svg";
 import ShootingStarIcon from "./shooting-star.svg";
 import DollarLineIcon from "./dollar-line.svg";
 import TrashBinIcon from "./trash.svg";
-import AngleUpIcon from "./angle-up.svg";
-import AngleDownIcon from "./angle-down.svg";
+
+
 import PencilIcon from "./pencil.svg";
 import CheckLineIcon from "./check-line.svg";
 import CloseLineIcon from "./close-line.svg";
@@ -52,6 +52,7 @@ import ChatIcon from "./chat.svg";
 import MoreDotIcon from "./more-dot.svg";
 import BellIcon from "./bell.svg";
 
+
 export {
   DownloadIcon,
   BellIcon,
@@ -65,7 +66,7 @@ export {
   BoxIcon,
   CloseIcon,
   CheckCircleIcon,
-  AlertIcon,
+
   InfoIcon,
   ErrorIcon,
   ArrowUpIcon,
@@ -77,8 +78,7 @@ export {
   ShootingStarIcon,
   DollarLineIcon,
   TrashBinIcon,
-  AngleUpIcon,
-  AngleDownIcon,
+
   PencilIcon,
   CheckLineIcon,
   CloseLineIcon,

@@ -1,26 +1,16 @@
-import type { NextConfig } from 'next'
-import path from 'path'
+// next.config.ts
 
-const nextConfig: NextConfig = {
-  webpack: (config, { isServer }) => {
-    // Resolve path aliases
-    config.resolve = config.resolve || {}
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname, 'src'),
-    }
-
-    // Add SVG support
-    config.module = config.module || {}
-    config.module.rules = config.module.rules || []
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
-    })
+    });
 
-    return config
+    return config;
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
