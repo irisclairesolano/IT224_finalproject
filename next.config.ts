@@ -1,8 +1,20 @@
-const nextConfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
-  webpack(config) {
+  webpack: (config: any, { isServer }: { isServer: boolean }) => {
+    // Grab the existing rule that handles SVG imports
+    const fileLoaderRule = config.module.rules.find((rule: any) =>
+      rule.test?.test?.('.svg')
+    )
+
+    if (fileLoaderRule) {
+      fileLoaderRule.exclude = /\.svg$/i
+    }
+
     config.module.rules.push({
-      test: /\.svg$/,
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
       use: [
         {
           loader: '@svgr/webpack',
@@ -11,18 +23,24 @@ const nextConfig = {
             svgoConfig: {
               plugins: [
                 {
-                  name: 'removeViewBox',
-                  active: false,
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      removeViewBox: false,
+                    },
+                  },
                 },
+                'prefixIds',
               ],
             },
+            titleProp: true,
           },
         },
       ],
-    });
+    })
 
-    return config;
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+export default nextConfig
