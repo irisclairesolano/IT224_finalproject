@@ -94,7 +94,7 @@ export default function ActiveUsersChart() {
   const series = [
     {
       name: "active users",
-      data: [80, 120, 96, 73, 56, 48, 65, 104, 106, 90, 145, 117],
+      data: [8, 10, 9, 7, 5, 4, 6, 10, 10, 9, 7, 6],
     },
   ];
   const [isOpen, setIsOpen] = useState(false);

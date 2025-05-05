@@ -3,8 +3,8 @@
 import { useQueryClient, useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import React from 'react';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-// 🧠 Define the User type
 type User = {
   id: number;
   name: string;
@@ -19,20 +19,18 @@ type User = {
   };
 };
 
-// ✅ Fetch all users
 const fetchUsers = async (): Promise<User[]> => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
   if (!res.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error('Failed to fetch users');
   }
   return res.json();
 };
 
-// ✅ Fetch single user by ID
 const fetchUser = async (id: number): Promise<User> => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
   if (!res.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error(`Failed to fetch user ${id}`);
   }
   return res.json();
 };
@@ -40,35 +38,40 @@ const fetchUser = async (id: number): Promise<User> => {
 export default function ManageUsers() {
   const queryClient = useQueryClient();
 
-  // 🧠 Main user list query with staleTime and refetchOnWindowFocus
   const {
     data: users = [],
     isLoading,
     isError,
     error,
-    isFetching
+    isFetching,
+    refetch
   } = useQuery<User[], Error>({
     queryKey: ['users'],
     queryFn: fetchUsers,
-    staleTime: 60 * 1000, // 1 minute
-    refetchOnWindowFocus: false
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
+    retry: 2,
+    retryDelay: 1000
   });
 
-  // Prefetch user data on hover
   const prefetchUser = (userId: number) => {
     queryClient.prefetchQuery({
       queryKey: ['user', userId],
       queryFn: () => fetchUser(userId),
-      staleTime: 60 * 1000
+      staleTime: 5 * 60 * 1000
     });
   };
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return (
-      <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p>Loading users...</p>
+      <div className="min-h-screen p-6 bg-gray-50 flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="animate-pulse flex space-x-4 justify-center">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="bg-gray-200 h-12 w-12 rounded-full"></div>
+            ))}
+          </div>
+          <p className="text-gray-600">Loading user data...</p>
         </div>
       </div>
     );
@@ -76,13 +79,14 @@ export default function ManageUsers() {
 
   if (isError) {
     return (
-      <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 max-w-md">
-          <p className="font-bold">Error</p>
-          <p>{error.message}</p>
+      <div className="min-h-screen p-6 bg-gray-50 flex items-center justify-center">
+        <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 max-w-md rounded shadow">
+          <h3 className="font-bold text-lg mb-2">Error Loading Data</h3>
+          <p className="mb-4">{error.message}</p>
           <button
-            onClick={() => queryClient.refetchQueries({ queryKey: ['users'] })}
-            className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+            onClick={() => refetch()}
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+            aria-label="Retry loading users"
           >
             Retry
           </button>
@@ -92,76 +96,52 @@ export default function ManageUsers() {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
+    <div className="min-h-screen p-4 md:p-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        {/* <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">User Management</h1>
-          <Link
-            href="/users/create"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Add New User
-          </Link>
-        </div> */}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">User Management</h1>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
           {users.map((user) => (
             <Link
               key={user.id}
               href={`/users/${user.id}`}
-              className="bg-white shadow-lg p-6 rounded-xl hover:shadow-xl transition transform hover:-translate-y-1"
+              className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 overflow-hidden"
               onMouseEnter={() => prefetchUser(user.id)}
+              prefetch={false} // Let react-query handle prefetching
             >
-              <div className="flex items-center mb-4">
-                <div className="bg-blue-100 text-blue-800 rounded-full w-12 h-12 flex items-center justify-center font-bold">
-                  {user.name.charAt(0)}
+              <div className="p-4 md:p-6">
+                <div className="flex items-center mb-4">
+                  <div className="bg-gradient-to-br from-blue-100 to-blue-200 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">
+                    {user.name.charAt(0)}
+                  </div>
+                  <div className="ml-3">
+                    <h2 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors line-clamp-1">
+                      {user.name}
+                    </h2>
+                    <p className="text-sm text-gray-500">@{user.username}</p>
+                  </div>
                 </div>
-                <div className="ml-4">
-                  <h2 className="text-xl font-semibold">{user.name}</h2>
-                  <p className="text-gray-600">@{user.username}</p>
+
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center text-gray-600">
+                    <svg className="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    <span className="truncate">{user.email}</span>
+                  </div>
+                  
+                  <div className="flex items-center text-gray-600">
+                    <svg className="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>{user.address.city}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="space-y-2">
-                <p className="text-gray-800 flex items-center">
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  {user.email}
-                </p>
-                <p className="text-gray-500 flex items-center">
-                  <svg
-                    className="w-4 h-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  {user.address.city}
-                </p>
               </div>
             </Link>
           ))}

@@ -1,34 +1,45 @@
-// components/UserMap.js
+'use client';
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-// Libreng token mula sa Mapbox (sign up sa https://www.mapbox.com/)
+// Set the Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 const UserMap = ({ latitude, longitude }) => {
-  // 1. Create a reference to the map container (div na lalagyan ng mapa)
   const mapContainer = useRef(null);
+  const mapRef = useRef(null); // Store map instance
 
-  // 2. Initialize the map when the component loads
   useEffect(() => {
-    const map = new mapboxgl.Map({
-      container: mapContainer.current, // Div na gagamitin para sa mapa
-      style: 'mapbox://styles/mapbox/streets-v11', // Itsura ng mapa
-      center: [longitude, latitude], // [Longitude, Latitude]
-      zoom: 12, // Zoom level (12 = malapit)
-    });
+    if (!latitude || !longitude || isNaN(latitude) || isNaN(longitude)) {
+      console.error('Invalid coordinates:', { latitude, longitude });
+      return;
+    }
 
-    // 3. Add a marker (tuldok sa mapa)
-    new mapboxgl.Marker()
-      .setLngLat([longitude, latitude])
-      .addTo(map);
+    // Initialize map only once
+    if (!mapRef.current && mapContainer.current) {
+      const map = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [longitude, latitude],
+        zoom: 24,
+      });
 
-    // 4. Cleanup: tanggalin ang mapa kapag na-unmount ang component
-    return () => map.remove();
+      // Add marker
+      new mapboxgl.Marker({ color: '#FF0000' })
+        .setLngLat([longitude, latitude])
+        .addTo(map);
+
+      mapRef.current = map; // Store map instance
+    }
+
+    // Update map center if coordinates change
+    if (mapRef.current) {
+      mapRef.current.setCenter([longitude, latitude]);
+    }
   }, [latitude, longitude]);
 
-  // 5. Return the div na lalagyan ng mapa
-  return <div ref={mapContainer} style={{ height: '100%', width: '100%' }} />;
+  return <div ref={mapContainer} className="w-full h-full rounded-lg shadow-md" />;
 };
 
 export default UserMap;
