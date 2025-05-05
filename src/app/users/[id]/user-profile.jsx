@@ -1,55 +1,35 @@
-// app/manage-users/[id]/user-profile.jsx
-import React, { useEffect, useState } from 'react';
-import UserMap from './usersMap';
-import { use } from 'react';
+"use client";
 
-const UserProfile = ({ params }) => {
-  const { id } = use(params);
+import { useEffect, useState } from "react";
+
+export default function UserProfile({ params }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchUser() {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${id}`
-        );
+        const userId = await params.id; // Await params.id
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+        if (!response.ok) throw new Error("Failed to fetch user data");
         const data = await response.json();
         setUser(data);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      } finally {
-        setLoading(false);
+      } catch (err) {
+        setError(err.message);
       }
-    }
+    };
 
-    fetchUser(); // 👈 Wrap this in useEffect
-  }, [id]); // 👈 Only run this if ID changes
+    fetchData();
+  }, [params]);
 
-  if (loading) {
-    return <p>Loading user...</p>;
-  }
-
-  if (!user) {
-    return <p>User not found.</p>;
-  }
+  if (error) return <div>Error: {error}</div>;
+  if (!user) return <div>Loading...</div>;
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>{user.name}</h1>
+    <div>
+      <h1>{user.name}</h1>
       <p>Email: {user.email}</p>
-      <p>
-        Address: {user?.address?.street}, {user?.address?.city}
-      </p>
-
-      <div style={{ height: '300px', marginTop: '20px' }}>
-        <UserMap
-          latitude={parseFloat(user?.address?.geo?.lat)}
-          longitude={parseFloat(user?.address?.geo?.lng)}
-        />
-      </div>
+      <p>City: {user.address.city}</p>
     </div>
   );
-};
-
-export default UserProfile;
+}

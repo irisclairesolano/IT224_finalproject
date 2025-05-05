@@ -182,3 +182,24 @@ body {
 .swiper-button-prev {
   @apply h-10 w-10 rounded-full border border-gray-200 bg-white/90 text-gray-700 shadow-slider-navigation dark:border-white/10 dark:bg-gray-800 dark:text-gray-400;
 }
+
+/* Map container styling */
+.map-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Post container styling */
+.post-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #ffffff;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.post-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
