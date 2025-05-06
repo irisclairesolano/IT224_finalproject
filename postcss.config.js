@@ -1,7 +1,21 @@
 module.exports = {
-  plugins: {
-    'postcss-nesting': {}, // Add this plugin for CSS nesting
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
+  plugins: [
+    'postcss-import',
+    'postcss-flexbugs-fixes',
+    [
+      'postcss-preset-env',
+      {
+        autoprefixer: {
+          flexbox: 'no-2009',
+        },
+        stage: 3,
+        features: {
+          'custom-properties': false,
+          'nesting-rules': true,  // This is crucial for nesting support
+        },
+      },
+    ],
+    'tailwindcss',
+    'autoprefixer',
+  ],
+}
