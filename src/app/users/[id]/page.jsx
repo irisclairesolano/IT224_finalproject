@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import UserMap from "./usersMap";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import UserMap from "./usersMap";
+
+
 
 const UserProfile = ({ params }) => {
   const [expandedPostId, setExpandedPostId] = useState(null);

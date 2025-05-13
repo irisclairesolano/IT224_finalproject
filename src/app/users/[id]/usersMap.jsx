@@ -1,45 +1,30 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+"use client";
 
-// Set the Mapbox access token
-mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+import React from "react";
 
 const UserMap = ({ latitude, longitude }) => {
-  const mapContainer = useRef(null);
-  const mapRef = useRef(null); // Store map instance
+  if (!latitude || !longitude || isNaN(latitude) || isNaN(longitude)) {
+    return (
+      <div className="h-full flex items-center justify-center bg-gray-100">
+        <p>Invalid coordinates</p>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    if (!latitude || !longitude || isNaN(latitude) || isNaN(longitude)) {
-      console.error('Invalid coordinates:', { latitude, longitude });
-      return;
-    }
+  // Create the Google Maps embed URL with the given latitude and longitude
+  const mapSrc = `https://maps.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
 
-    // Initialize map only once
-    if (!mapRef.current && mapContainer.current) {
-      const map = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [longitude, latitude],
-        zoom: 24,
-      });
-
-      // Add marker
-      new mapboxgl.Marker({ color: '#FF0000' })
-        .setLngLat([longitude, latitude])
-        .addTo(map);
-
-      mapRef.current = map; // Store map instance
-    }
-
-    // Update map center if coordinates change
-    if (mapRef.current) {
-      mapRef.current.setCenter([longitude, latitude]);
-    }
-  }, [latitude, longitude]);
-
-  return <div ref={mapContainer} className="w-full h-full rounded-lg shadow-md" />;
+  return (
+    <iframe
+      title="User Location"
+      width="100%"
+      height="100%"
+      className="rounded-lg shadow-md border-0"
+      src={mapSrc}
+      loading="lazy"
+      allowFullScreen
+    ></iframe>
+  );
 };
 
 export default UserMap;

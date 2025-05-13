@@ -1,46 +1,25 @@
-import type { NextConfig } from 'next'
+// import type { NextConfig } from 'next';
+// import path from 'path';
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  webpack: (config: any, { isServer }: { isServer: boolean }) => {
-    // Grab the existing rule that handles SVG imports
-    const fileLoaderRule = config.module.rules.find((rule: any) =>
-      rule.test?.test?.('.svg')
-    )
+// const nextConfig: NextConfig = {
+//   webpack: (config, { isServer }) => {
+//     // Resolve path aliases
+//     config.resolve = config.resolve || {};
+//     config.resolve.alias = {
+//       ...config.resolve.alias,
+//       '@': path.resolve(__dirname, 'src'),
+//     };
 
-    if (fileLoaderRule) {
-      fileLoaderRule.exclude = /\.svg$/i
-    }
+//     // Add SVG support
+//     config.module = config.module || {};
+//     config.module.rules = config.module.rules || [];
+//     config.module.rules.push({
+//       test: /\.svg$/,
+//       use: ['@svgr/webpack'],
+//     });
 
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            svgo: true,
-            svgoConfig: {
-              plugins: [
-                {
-                  name: 'preset-default',
-                  params: {
-                    overrides: {
-                      removeViewBox: false,
-                    },
-                  },
-                },
-                'prefixIds',
-              ],
-            },
-            titleProp: true,
-          },
-        },
-      ],
-    })
+//     return config; // Return the modified config
+//   },
+// };
 
-    return config
-  },
-}
-
-export default nextConfig
+// export default nextConfig;
