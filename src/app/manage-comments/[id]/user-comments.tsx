@@ -1,9 +1,8 @@
-"use client";
+
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FiArrowLeft, FiChevronDown, FiChevronUp, FiFileText, FiUser } from "react-icons/fi";
-
 
 type Post = {
   id: number;
@@ -26,7 +25,7 @@ type User = {
 };
 
 const UserComments = ({ params }: { params: { id: string } }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -114,7 +113,7 @@ const UserComments = ({ params }: { params: { id: string } }) => {
     );
   }
 
-
+const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">

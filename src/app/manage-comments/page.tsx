@@ -30,7 +30,7 @@ type UserWithPostCount = User & {
 };
 
 
-const router = useRouter();
+
 // Fetch users and their post counts
 const fetchUsersWithPosts = async (): Promise<UserWithPostCount[]> => {
   const [usersRes, postsRes] = await Promise.all([
@@ -104,6 +104,8 @@ export default function ManageComments() {
       </div>
     );
   }
+
+  const router = useRouter();
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
