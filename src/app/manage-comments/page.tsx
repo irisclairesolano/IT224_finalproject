@@ -1,9 +1,9 @@
 "use client";
 
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import React from "react";
-import { FiMail, FiMapPin, FiUser, FiFileText } from "react-icons/fi";
+import { useRouter } from "next/navigation";
+import { FiArrowLeft, FiFileText, FiMail, FiMapPin, FiUser } from "react-icons/fi";
 
 // Define the User type
 type User = {
@@ -29,6 +29,8 @@ type UserWithPostCount = User & {
   postCount: number;
 };
 
+
+const router = useRouter();
 // Fetch users and their post counts
 const fetchUsersWithPosts = async (): Promise<UserWithPostCount[]> => {
   const [usersRes, postsRes] = await Promise.all([
@@ -106,6 +108,12 @@ export default function ManageComments() {
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <div className="max-w-7xl mx-auto">
+         <button
+          onClick={() => router.back()}
+          className="mb-6 flex items-center text-blue-600 hover:text-blue-800 transition duration-200"
+        >
+          <FiArrowLeft className="mr-2" /> Back
+        </button>
         <h1 className="text-3xl font-bold text-gray-800 mb-8">Manage Comments</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

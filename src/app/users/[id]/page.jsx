@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FiArrowLeft, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import UserMap from "./usersMap";
 
 
@@ -79,8 +80,16 @@ const UserProfile = ({ params }) => {
   const lat = parseFloat(user?.address?.geo?.lat);
   const lng = parseFloat(user?.address?.geo?.lng);
 
+  const router = useRouter();
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
+        <button
+          onClick={() => router.back()}
+          className="mb-6 flex items-center text-blue-600 hover:text-blue-800 transition duration-200"
+        >
+          <FiArrowLeft className="mr-2" /> Back
+        </button>
       {/* User Profile */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2">{user.name}</h1>

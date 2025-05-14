@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FiArrowLeft, FiUser, FiFileText, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { FiArrowLeft, FiChevronDown, FiChevronUp, FiFileText, FiUser } from "react-icons/fi";
+
 
 type Post = {
   id: number;
@@ -112,6 +113,8 @@ const UserComments = ({ params }: { params: { id: string } }) => {
       </div>
     );
   }
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">

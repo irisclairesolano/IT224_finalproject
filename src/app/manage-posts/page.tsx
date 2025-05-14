@@ -2,7 +2,8 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
+import { FiArrowLeft } from "react-icons/fi";
 
 // Define the User type
 type User = {
@@ -87,11 +88,19 @@ export default function ManagePosts() {
     );
   }
 
+  const router = useRouter();
+
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <div className="max-w-7xl mx-auto">
 
-        
+        <button
+          onClick={() => router.back()}
+          className="mb-6 flex items-center text-blue-600 hover:text-blue-800 transition duration-200"
+        >
+          <FiArrowLeft className="mr-2" /> Back
+        </button>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {users.map((user) => (
             <Link
