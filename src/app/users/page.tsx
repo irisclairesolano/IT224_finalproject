@@ -1,9 +1,8 @@
 'use client';
 
-import { useQueryClient, useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
-import React from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Link from 'next/link';
 
 type User = {
   id: number;

@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React, { useCallback } from "react";
 import { useSidebar } from "../context/SidebarContext";
 /* Removed icon imports to replace with img tags */
 // import { GridIcon, UserCircleIcon } from "../assets/icons/index";
-import { FiMessageCircle, FiUsers, FiFileText } from "react-icons/fi"; // Import new icons
+import { FiFileText, FiMessageCircle, FiUsers } from "react-icons/fi"; // Import new icons
 
 type NavItem = {
   name: string;

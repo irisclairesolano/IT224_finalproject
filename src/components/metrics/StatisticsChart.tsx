@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 type ChartData = {
   categories: string[];
@@ -79,7 +79,7 @@ export default function StatisticsChart() {
     };
 
     fetchData();
-  }, [timeRange]);
+  }, [timeRange, getCategories]); 
 
   const options: ApexOptions = {
     chart: {
@@ -89,7 +89,7 @@ export default function StatisticsChart() {
       toolbar: { show: false },
       animations: {
         enabled: true,
-        easing: "easeInOut",
+        
         speed: 800,
       },
     },
@@ -151,7 +151,7 @@ export default function StatisticsChart() {
       position: "top",
       horizontalAlign: "right",
       markers: {
-        radius: 12,
+ 
       },
     },
   };

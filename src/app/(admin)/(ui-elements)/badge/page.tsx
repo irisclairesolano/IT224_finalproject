@@ -1,7 +1,5 @@
 import PageBreadcrumb from "../../../../components/common/PageBreadCrumb";
 import Badge from "../../../../components/ui/badge/Badge";
-import { Metadata } from "next";
-import React from "react";
 
 export default function BadgePage() {
   return (

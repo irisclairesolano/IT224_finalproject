@@ -1,9 +1,7 @@
+import { BoxIcon } from "@/assets/icons";
 import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import Button from "@/components/ui/button/Button";
-import { BoxIcon } from "@/assets/icons";
-import { Metadata } from "next";
-import React from "react";
 
 
 

@@ -1,21 +1,16 @@
 module.exports = {
-  plugins: [
-    'postcss-import',
-    'postcss-flexbugs-fixes',
-    [
-      'postcss-preset-env',
-      {
-        autoprefixer: {
-          flexbox: 'no-2009',
-        },
-        stage: 3,
-        features: {
-          'custom-properties': false,
-          'nesting-rules': true,  // This is crucial for nesting support
-        },
+  plugins: {
+    'tailwindcss': {},
+    'postcss-flexbugs-fixes': {},
+    'postcss-preset-env': {
+      autoprefixer: {
+        flexbox: 'no-2009'
       },
-    ],
-    'tailwindcss',
-    'autoprefixer',
-  ],
+      stage: 3,
+      features: {
+        'custom-properties': false,
+        'nesting-rules': true
+      }
+    }
+  }
 }

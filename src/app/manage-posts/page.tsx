@@ -1,8 +1,7 @@
 "use client";
 
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 
 // Define the User type

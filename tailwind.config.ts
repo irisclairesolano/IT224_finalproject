@@ -5,7 +5,7 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/globals.css" // Explicitly include CSS file
+    // "./src/app/globals.css" // Explicitly include CSS file
   ],
   darkMode: "class",
   theme: {

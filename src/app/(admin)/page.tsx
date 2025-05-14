@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
-import { UsersStat} from "@/components/metrics/UsersStat";
-import React from "react";
+import { UsersStat } from "@/components/metrics/UsersStat";
 // import MonthlyTarget from "@/components/metrics/MonthlyTarget";
 import ActiveUsersChart from "@/components/metrics/ActiveUsersChart";
 import StatisticsChart from "@/components/metrics/StatisticsChart";

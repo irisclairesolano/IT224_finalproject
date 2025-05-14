@@ -1,10 +1,10 @@
 "use client";
 
+import Input from "@/components/form/input/InputField";
+import Button from "@/components/ui/button/Button";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Input from "@/components/form/input/InputField";
-import Button from "@/components/ui/button/Button";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -60,7 +60,7 @@ export default function SignInForm() {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setUsername(e.target.value)
               }
-              required
+
             />
           </div>
           <div>
@@ -78,7 +78,7 @@ export default function SignInForm() {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setPassword(e.target.value)
               }
-              required
+
             />
           </div>
           <div>
